@@ -1,9 +1,10 @@
 import React from 'react';
-import ReactDOM from 'react-dom'
+import ReactDOM from 'react-dom';
 
 //component
 import AddAppointment from './component/AddAppointment'
 import Search from './component/Search'
+import AddInfo from './component/AddInfo'
 
 //source
 import { AiOutlineHeart } from "react-icons/ai";
@@ -25,9 +26,9 @@ function App(){
       <Search />
 
       <div id="list">
-      <ul>
-        <li>반복문</li>
-      </ul>
+        <ul>
+          <AddInfo />
+        </ul>
       </div>
 
 
