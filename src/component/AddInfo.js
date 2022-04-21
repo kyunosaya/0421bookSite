@@ -1,22 +1,22 @@
 import React from 'react'
 import { BsFillTrashFill } from "react-icons/bs";
 
-function AddInfo(){
+function AddInfo({appointment}){
   return (
     <li>
       <dl>
         <dt>
-          {/* appointment.petName */}
+          {appointment.petName}
         </dt>
         <dd className="owner">
           <dfn>예약자명 : </dfn>
-          {/* appoint.ownerName */}
+          {appointment.ownerName}
         </dd>
         <dd className="desc">
-          {/* appoint.aptNotes */}
+          {appointment.aptNotes}
         </dd>
         <dd className="date">
-          {/* appoint.aptDate */}
+          {appointment.aptDate}
         </dd>
       </dl>
 

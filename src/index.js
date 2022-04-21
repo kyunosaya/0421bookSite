@@ -9,6 +9,7 @@ import AddInfo from './component/AddInfo'
 //source
 import { AiOutlineHeart } from "react-icons/ai";
 import './index.css'
+import appointData from './data.json'
 
 
 function App(){
@@ -27,7 +28,14 @@ function App(){
 
       <div id="list">
         <ul>
-          <AddInfo />
+          {
+            appointData.map( item => (
+              <AddInfo 
+                key={item.id} 
+                appointment = {item}
+              />
+            ) )
+          }
         </ul>
       </div>
 
