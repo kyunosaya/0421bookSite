@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom'
 
 //component
 import AddAppointment from './component/AddAppointment'
+import Search from './component/Search'
 
 //source
 import { AiOutlineHeart } from "react-icons/ai";
@@ -14,12 +15,14 @@ function App(){
     <article>
 
       <h3>
-      <AiOutlineHeart style={{color:'pink'}}/>
+      <AiOutlineHeart style={{color:'rgb(68,149,247)'}}/>
       예약 시스템
-      <AiOutlineHeart style={{color:'pink'}}/>
+      <AiOutlineHeart style={{color:'rgb(68,149,247)'}}/>
       </h3>
 
       <AddAppointment />
+
+      <Search />
 
       <div id="list">
       <ul>
