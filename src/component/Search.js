@@ -1,9 +1,12 @@
-import React from 'react'
+import {useState} from 'react'
 import { AiOutlineSearch,AiOutlineCaretDown } from "react-icons/ai";
 // import { AiOutlineCaretDown } from "react-icons/ai";
 
 //소스 컴포런트
-function DropDown(){
+function DropDown({toggleSort}){
+  if(!toggleSort){
+    return null
+  }
   return (
     <ul>
       <li>애기명</li>
@@ -14,17 +17,32 @@ function DropDown(){
 }
 
 //본부 컴포넌트
-function Search(){
+function Search({query,onQueryChange}){
+  let [toggleSort,setToggleSort] = useState(false);
   return (
     <div id="search">
       <p>
       <AiOutlineSearch />
-      <input placeholder="search"/>
-      <button type="submit">
+      <input 
+        placeholder="search"
+        value={query}
+        onChange={
+          (event) => {onQueryChange(event.target.value)}
+        }
+      />
+      <button 
+        type="submit"
+        onClick={
+          () => {setToggleSort(!toggleSort)}
+        }
+      >
         정렬하기<AiOutlineCaretDown />
       </button>
       </p>
-      <DropDown />
+
+      <DropDown 
+        toggleSort = {toggleSort}
+      />
     </div>
   )
 }

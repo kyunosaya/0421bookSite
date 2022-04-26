@@ -1,5 +1,6 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import {useState,useCallback,useEffect} from 'react';
+import ReactDOM from 'react-dom/client';
 
 //component
 import AddAppointment from './component/AddAppointment'
@@ -9,10 +10,36 @@ import AddInfo from './component/AddInfo'
 //source
 import { AiOutlineHeart } from "react-icons/ai";
 import './index.css'
-import appointData from './data.json'
+// import appointData from './data.json'
 
 
 function App(){
+
+  //state설정
+  let [appointmentList,setAppointmentList] = useState([])
+    //search
+  let [query,setQuery] = useState('')
+
+  //검색 필터 -> 배열 -> addInfo
+  const filterAppointment = appointmentList.filter(
+    item => {
+      return (
+        item.petName.toLowerCase().includes(query.toLowerCase()) ||
+        item.ownerName.toLowerCase().includes(query.toLowerCase())
+      )
+    }
+  )
+
+  //callback
+  const fetchData = useCallback( () => {
+    fetch('./data.json')
+    .then(response => response.json())
+    .then(data => setAppointmentList(data))
+  } , [] )
+
+  //effect 작동
+  useEffect( () => {fetchData()} , [fetchData] )
+
   return (
     <article>
 
@@ -24,15 +51,24 @@ function App(){
 
       <AddAppointment />
 
-      <Search />
+      <Search 
+        query = {query}
+        onQueryChange = {myQuery => setQuery(myQuery)}
+      />
 
       <div id="list">
         <ul>
           {
-            appointData.map( item => (
+            filterAppointment.map( appointment => (
               <AddInfo 
-                key={item.id} 
-                appointment = {item}
+                key={appointment.id} 
+                appointment = {appointment}
+                onDelecAppointment = {
+                  appointmentId => 
+                  setAppointmentList(appointmentList.filter(
+                    appointment => appointment.id !== appointmentId
+                  ))
+                }
               />
             ) )
           }

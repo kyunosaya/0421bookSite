@@ -1,7 +1,7 @@
 import React from 'react'
 import { BsFillTrashFill } from "react-icons/bs";
 
-function AddInfo({appointment}){
+function AddInfo({appointment,onDelecAppointment}){
   return (
     <li>
       <dl>
@@ -21,7 +21,11 @@ function AddInfo({appointment}){
       </dl>
 
       <p>
-        <button><BsFillTrashFill /></button>
+        <button
+          onClick={
+            () => onDelecAppointment(appointment.id)
+          }
+        ><BsFillTrashFill /></button>
       </p>
     </li>
   )
