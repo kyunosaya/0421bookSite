@@ -1,23 +1,44 @@
 import {useState} from 'react'
-import { AiOutlineSearch,AiOutlineCaretDown } from "react-icons/ai";
+import { AiOutlineSearch,AiOutlineCaretDown,AiOutlineCheck } from "react-icons/ai";
 // import { AiOutlineCaretDown } from "react-icons/ai";
 
 //소스 컴포런트
-function DropDown({toggleSort}){
+function DropDown({toggleSort,sortBy,onSortByChange,orderBy,onOrderByChange}){
   if(!toggleSort){
     return null
   }
   return (
     <ul>
-      <li>애기명</li>
-      <li>예약자명</li>
-      <li>날짜</li>
+      <li onClick = {() => {onSortByChange('petName')}}>
+        애기명
+        { (sortBy === 'petName') && <AiOutlineCheck />}
+      </li>
+
+      <li onClick = {() => {onSortByChange('ownerName')}}>
+        예약자명
+        { (sortBy === 'ownerName') && <AiOutlineCheck />}
+      </li>
+
+      <li onClick = {() => {onSortByChange('aptDate')}}>
+        날짜
+        { (sortBy === 'aptDate') && <AiOutlineCheck />}
+      </li>
+
+      <li onClick = {() => {onOrderByChange('asc')}}>
+        올림차순
+        { (orderBy === 'asc') && <AiOutlineCheck />}
+      </li>
+      
+      <li onClick = {() => {onOrderByChange('desc')}}>
+        내림차순
+        { (orderBy === 'desc') && <AiOutlineCheck />}
+      </li>
     </ul>
   )
 }
 
 //본부 컴포넌트
-function Search({query,onQueryChange}){
+function Search({query,onQueryChange,sortBy,onSortByChange,orderBy,onOrderByChange}){
   let [toggleSort,setToggleSort] = useState(false);
   return (
     <div id="search">
@@ -42,6 +63,10 @@ function Search({query,onQueryChange}){
 
       <DropDown 
         toggleSort = {toggleSort}
+        sortBy = {sortBy}
+        orderBy = {orderBy}
+        onSortByChange = {mySort => onSortByChange(mySort)}
+        onOrderByChange = {myOrder => onOrderByChange(myOrder)}
       />
     </div>
   )

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    let num01 = [1,23,111,'123',2342,'지리산']
+    let con01 = num01.sort();
+    console.log(con01)
+
+    let items = ['cfg','aaa','zsdfs','eaya','binh']
+    const num02 = items.sort(function(a,b){
+      if(a>b){
+        return(1)
+      }
+      if(a<b){
+        return(-1)
+      }
+      return 0
+    })
+    console.log(num02)
+
+    let str = ['Cfg','aaa','zsdfs','Eaya','binh']
+    // const bameA = a.toLowerCase();
+    const num03 = str.sort(function(a,b){
+      const nameA = a.toUpperCase();
+      const nameB = b.toUpperCase();
+      if(nameA > nameB){
+        return -1;
+      }
+      if(nameA < nameB){
+        return 1;
+      }
+      return 0;
+    })
+    console.log(num03)
+
+  </script>
+</body>
+</html>

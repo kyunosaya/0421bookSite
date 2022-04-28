@@ -55,14 +55,21 @@ function AddWrite({toggleForm,formData,setFormData,formDataPublish}){
       </li>
     </ul>
     <p>
-        {/* <button type="submit">예약하기</button> */}
-        <input type="submit" value="예약하기" />
+        {/* <button 
+          type="submit" 
+          onclick={formDataPublish}
+        >
+            예약하기
+        </button> */}
+        <input type="submit" value="예약하기" onClick={formDataPublish}/>
     </p>
     </>
   )
 }
 
-function AddAppointment(){
+
+
+function AddAppointment({onSendAppointment,lastId}){
   const clearData = {
     petName : '',
     ownerName : '',
@@ -70,14 +77,14 @@ function AddAppointment(){
     aptDate : ''
   }
 
-  let [toggleForm,settoggleForm] = useState(false)
+  let [toggleForm,setToggleForm] = useState(false)
 
   //form 데이터 생성
-  let {formData,setFormData} = useState({clearData})
+  let [formData,setFormData] = useState(clearData)
   function formDataPublish(){
     const formDataInfo ={
-      // id : lastId + 1,
-      petName : formData.petname,
+      id : lastId + 1,
+      petName : formData.petName,
       ownerName : formData.ownerName,
       aptNotes : formData.aptNotes,
       aptDate : formData.aptDate + ' ' + formData.aptTime
@@ -85,14 +92,14 @@ function AddAppointment(){
 
     onSendAppointment(formDataInfo)
     setFormData(clearData)
-    settoggleForm(!toggleForm)
+    setToggleForm(!toggleForm) 
   }
 
   return (
     <div id="appoint">
     <h4
       onClick={
-        () => {settoggleForm(!toggleForm)}
+        () => {setToggleForm(!toggleForm)}
       }
     >
       <AiFillCarryOut />
